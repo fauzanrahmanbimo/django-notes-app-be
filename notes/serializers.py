@@ -1,0 +1,33 @@
+from rest_framework import serializers
+from rest_framework.reverse import reverse #
+from notes.models import Note # [cite: 77]
+
+class NoteSerializer(serializers.HyperlinkedModelSerializer): # [cite: 78]
+    _links = serializers.SerializerMethodField() # [cite: 79]
+
+    class Meta: # [cite: 80]
+        model = Note # [cite: 81]
+        fields = ['id', 'title', 'body', 'tags', 'createdAt', 'updatedAt', '_links'] # [cite: 82]
+
+    def get__links(self, obj):  # [cite: 2]
+        request = self.context.get('request')  # [cite: 2]
+        return [  # [cite: 2]
+            {  # [cite: 2]
+                "rel": "self",  # [cite: 2]
+                "href": reverse('note-list', request=request),  # [cite: 2]
+                "action": "POST",  # [cite: 2]
+                "types": ["application/json"]  # [cite: 2]
+            },  # [cite: 2]
+            {  # [cite: 2]
+                "rel": "self",  # [cite: 2]
+                "href": reverse('note-detail', kwargs={'pk': obj.pk}, request=request),  # [cite: 2]
+                "action": "GET",  # [cite: 2]
+                "types": ["application/json"]  # [cite: 2]
+            },  # [cite: 2]
+            {  # [cite: 2]
+                "rel": "self",  # [cite: 2]
+                "href": reverse('note-detail', kwargs={'pk': obj.pk}, request=request),  # [cite: 2]
+                "action": "PUT",  # [cite: 2]
+                "types": ["application/json"]  # [cite: 2]
+            }  # [cite: 2]
+        ]  #[cite: 2]cite: 116]
