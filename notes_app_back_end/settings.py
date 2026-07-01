@@ -13,10 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 SECRET_KEY = 'django-insecure-^$^g+7g9t=a)zc2rbm7o*ap5zgx@v=x2=@^a&3ilpb1fvwry$1'
 
-DEBUG = True
+DEBUG = False
 
 # Untuk praktikum/lab
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "70.153.137.156",
+]
 
 
 # Application definition
@@ -97,5 +99,8 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
