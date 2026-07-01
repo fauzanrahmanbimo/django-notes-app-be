@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn daemon for Django Notes App
+After=network.target
+
+[Service]
+User=azureuser
+Group=www-data
+WorkingDirectory=/home/azureuser/django-notes-app-be
+Environment="PATH=/home/azureuser/django-notes-app-be/venv/bin"
+ExecStart=/home/azureuser/django-notes-app-be/venv/bin/gunicorn --bind 0.0.0.0:8000 notes_app_back_end.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
