@@ -11,6 +11,8 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'notes_app_back_end.settings')
-
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE",
+    "notes_app_back_end.settings.dev"
+)
 application = get_asgi_application()
